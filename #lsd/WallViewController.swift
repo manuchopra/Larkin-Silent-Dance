@@ -25,35 +25,34 @@ class WallViewController : UIViewController, UINavigationControllerDelegate, UII
     
     @IBOutlet weak var shareButton: UIButton!
     
-    @IBAction func videoAction(sender: UIButton) {
+    @IBAction func videoAction(sender: UIButton) { //This function is called when user decides to take a new video
         
-        if isCameraAvailable() {
+        if isCameraAvailable() { //check if camera is available
             
             controller = UIImagePickerController()
             
             if let theController = controller{
                 theController.sourceType = .Camera
                 theController.mediaTypes = [kUTTypeMovie as String]
-                theController.allowsEditing = true
                 theController.delegate = self
-                theController.videoMaximumDuration = 6
+                theController.videoMaximumDuration = 6 //It's the Vine generation - Only 6 sec videos allowed.
                 presentViewController(theController, animated: true, completion: nil)
             }
             
         } else {
-            println("Camera is not available")
+            println("No cameraaa, No videeeeooo")
         }
         
     }
     
     var controller: UIImagePickerController?
     
-    func isCameraAvailable() -> Bool{
+    func isCameraAvailable() -> Bool{ //checks if camera is available
         return UIImagePickerController.isSourceTypeAvailable(.Camera)
     }
     
     func imagePickerController(picker: UIImagePickerController,
-        didFinishPickingMediaWithInfo info: [NSObject : AnyObject]){
+        didFinishPickingMediaWithInfo info: [NSObject : AnyObject]){ //Called to save the shot image to camera roll automatically
             
         let mediaType:AnyObject? = info[UIImagePickerControllerMediaType]
         if let type:AnyObject = mediaType{
@@ -62,14 +61,8 @@ class WallViewController : UIViewController, UINavigationControllerDelegate, UII
                 let stringType = type as String
                 if stringType == kUTTypeImage as String{
                     var theImage: UIImage!
-                    if picker.allowsEditing{
-                        theImage = info[UIImagePickerControllerEditedImage] as UIImage
-                    } else {
-                        theImage = info[UIImagePickerControllerOriginalImage] as UIImage
-                    }
-                    let selectorAsString =
-                    "imageWasSavedSuccessfully:didFinishSavingWithError:context:"
-                    let selectorToCall = Selector(selectorAsString)
+                    theImage = info[UIImagePickerControllerOriginalImage] as UIImage
+                    let selectorToCall = Selector("imageWasSavedSuccessfully:didFinishSavingWithError:context:")
                     UIImageWriteToSavedPhotosAlbum(theImage,self,selectorToCall,nil)
                 }
             }
@@ -77,7 +70,7 @@ class WallViewController : UIViewController, UINavigationControllerDelegate, UII
             picker.dismissViewControllerAnimated(true, completion: nil)
     }
     
-    @IBAction func photoAction(sender: UIButton) {
+    @IBAction func photoAction(sender: UIButton) { //Called when user clicks camera button
         
         if isCameraAvailable(){
             
@@ -86,7 +79,6 @@ class WallViewController : UIViewController, UINavigationControllerDelegate, UII
             if let theController = controller{
                 theController.sourceType = .Camera
                 theController.mediaTypes = [kUTTypeImage as String]
-                theController.allowsEditing = true
                 theController.delegate = self
                 
                 presentViewController(theController, animated: true, completion: nil)
@@ -98,7 +90,7 @@ class WallViewController : UIViewController, UINavigationControllerDelegate, UII
         
     }
     
-    @IBAction func shareAction(sender: UIButton) {
+    @IBAction func shareAction(sender: UIButton) { //Brings up the share sheet
         var string2:String = "http://manuchopra.in/video.mp4"
         var url:NSURL? = NSURL(string: "http://manuchopra.in/video.mp4")
         
@@ -119,8 +111,8 @@ class WallViewController : UIViewController, UINavigationControllerDelegate, UII
         super.viewDidLoad()
         var screenWidth = self.view.frame.width
         var screenHeight = view.frame.height
-
-        moviePlayer = MPMoviePlayerController(contentURL: url)
+ 
+        moviePlayer = MPMoviePlayerController(contentURL: url) //Plays the movie
         moviePlayer.view.frame = CGRectMake(0, 0, screenWidth, screenHeight/3)
         self.view.addSubview(moviePlayer.view)
         moviePlayer.fullscreen = true

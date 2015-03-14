@@ -5,47 +5,13 @@ import CoreLocation
 
 class SecondViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate {
     
-    @IBOutlet weak var startStopTracking: UISegmentedControl!
+    @IBOutlet weak var startStopTracking: UISegmentedControl! //Starts and stop tracking
     @IBOutlet weak var theMap: MKMapView!
     @IBOutlet weak var distanceLabel: UILabel!
     var locationManager:CLLocationManager?
     var myLocations: [CLLocation] = []
     
-    func locationManager(manager: CLLocationManager!,
-        didUpdateToLocation newLocation: CLLocation!,
-        fromLocation oldLocation: CLLocation!){
-            println("Latitude = \(newLocation.coordinate.latitude)")
-            println("Longitude = \(newLocation.coordinate.longitude)")
-    }
-
-    func locationManager(manager: CLLocationManager!,
-        didFailWithError error: NSError!){
-            println("Location manager failed with error = \(error)")
-    }
-
-    
-    func locationManager(manager: CLLocationManager!,
-        didChangeAuthorizationStatus status: CLAuthorizationStatus){
-            
-            print("The authorization status of location services is changed to: ")
-            
-            switch CLLocationManager.authorizationStatus(){
-            case .Authorized:
-                println("Authorized")
-            case .AuthorizedWhenInUse:
-                println("Authorized when in use")
-            case .Denied:
-                println("Denied")
-            case .NotDetermined:
-                println("Not determined")
-            case .Restricted:
-                println("Restricted")
-            default:
-                println("Unhandled")
-            }
-    }
-    
-    func displayAlertWithTitle(title: String, message: String){
+    func displayAlertWithTitle(title: String, message: String){ //UIAlertController template to give alert messages in case authorization is not given
         let controller = UIAlertController(title: title,
             message: message,
             preferredStyle: .Alert)
@@ -58,10 +24,9 @@ class SecondViewController: UIViewController, CLLocationManagerDelegate, MKMapVi
         
     }
     
-    func createLocationManager(#startImmediately: Bool){
+    func createLocationManager(#startImmediately: Bool){ //Creates the location manager
         locationManager = CLLocationManager()
         if let manager = locationManager{
-            println("Successfully created the location manager")
             manager.delegate = self
             if startImmediately{
                 manager.startUpdatingLocation()
@@ -71,51 +36,41 @@ class SecondViewController: UIViewController, CLLocationManagerDelegate, MKMapVi
 
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
-        /* Are location services available on this device? */
-        if CLLocationManager.locationServicesEnabled(){
+        if CLLocationManager.locationServicesEnabled(){//check if location services are enabled.
             
-            /* Do we have authorization to access location services? */
             switch CLLocationManager.authorizationStatus(){
-            case .Authorized:
-                /* Yes, always */
-                createLocationManager(startImmediately: true)
             case .AuthorizedWhenInUse:
-                /* Yes, only when our app is in use */
                 createLocationManager(startImmediately: true)
             case .Denied:
-                /* No */
                 displayAlertWithTitle("Not Determined",
                     message: "Location services are not allowed for this app")
-            case .NotDetermined:
-                /* We don't know yet, we have to ask */
+            case .NotDetermined: //Not sure yet - Prompt the user.
                 createLocationManager(startImmediately: false)
                 if let manager = self.locationManager{
                     manager.requestWhenInUseAuthorization()
                 }
             case .Restricted:
-                /* Restrictions have been applied, we have no access
-                to location services */
                 displayAlertWithTitle("Restricted",
                     message: "Location services are not allowed for this app")
+            default :
+                createLocationManager(startImmediately: true)
+
             }
             
             
         } else {
-            /* Location services are not enabled.
-            Take appropriate action: for instance, prompt the
-            user to enable the location services */
             println("Location services are not enabled")
         }
 
-                //        Setup our Map View
+        //Setup our Map View
         theMap?.delegate = self
         theMap?.mapType = MKMapType.Hybrid
         theMap?.showsUserLocation = true
         
-        startStopTracking.selectedSegmentIndex = -1
+        startStopTracking.selectedSegmentIndex = 0
     }
     
-    @IBAction func indexChanged(sender: UISegmentedControl) {
+    @IBAction func indexChanged(sender: UISegmentedControl) { //In case user changes the option
         switch startStopTracking.selectedSegmentIndex
         {
         case 0:
@@ -129,11 +84,10 @@ class SecondViewController: UIViewController, CLLocationManagerDelegate, MKMapVi
     }
     
     func locationManager(manager:CLLocationManager, didUpdateLocations locations:[AnyObject]) {
-//        distanceLabel.text = "\(locations[0])"
-        myLocations.append(locations[0] as CLLocation)
+        myLocations.append(locations[0] as CLLocation) //Plotting the new Map
         
-        let spanX = 0.007
-        let spanY = 0.007
+        let spanX = 0.005
+        let spanY = 0.005
         var newRegion = MKCoordinateRegion(center: theMap!.userLocation.coordinate, span: MKCoordinateSpanMake(spanX, spanY))
         theMap!.setRegion(newRegion, animated: true)
         
@@ -144,7 +98,7 @@ class SecondViewController: UIViewController, CLLocationManagerDelegate, MKMapVi
             let c1 = myLocations[sourceIndex].coordinate
             let c2 = myLocations[destinationIndex].coordinate
             var a = [c1, c2]
-            var polyline = MKPolyline(coordinates: &a, count: a.count)
+            var polyline = MKPolyline(coordinates: &a, count: a.count) //drawing the line connecting the beggining point to current point.
             theMap!.addOverlay(polyline)
         }
     }
@@ -155,7 +109,7 @@ class SecondViewController: UIViewController, CLLocationManagerDelegate, MKMapVi
         if overlay is MKPolyline {
             var polylineRenderer = MKPolylineRenderer(overlay: overlay)
             polylineRenderer.strokeColor = UIColor.blueColor()
-            polylineRenderer.lineWidth = 6
+            polylineRenderer.lineWidth = 5
             return polylineRenderer
         }
         return nil

@@ -46,15 +46,12 @@ MPMediaPickerControllerDelegate, AVAudioPlayerDelegate, UIAlertViewDelegate {
                 if success {
                 }
                 else{ //failure case
-                    println(evalPolicyError?.localizedDescription)
-                    
                     switch evalPolicyError!.code {
                         
                     case LAError.UserFallback.rawValue://user decides to type the password again
                         self.showPasswordAlert()
                         
                     default:
-                        println("Authentication failed")
                         self.showPasswordAlert()
                     }
                 }
@@ -95,11 +92,10 @@ MPMediaPickerControllerDelegate, AVAudioPlayerDelegate, UIAlertViewDelegate {
     @IBOutlet weak var play: UIButton! //Play UI button
     
     @IBAction func choose(sender: UIButton) { //Choose your song list.
-        displayMediaPickerAndPlayItem()
+        displayMedia()
         view.addSubview(sender)
         play.hidden = true //hides the play button
         pause.hidden = false //shows the pause button
-        createTeam()
     }
     
     @IBAction func clickedPlay(sender: UIButton) { //Called when user hits the play button
@@ -114,7 +110,6 @@ MPMediaPickerControllerDelegate, AVAudioPlayerDelegate, UIAlertViewDelegate {
         pause.hidden = false
     }
     
-    
     func handleSwipes(sender: UISwipeGestureRecognizer){ // Called when user swipes. If you swipe left, decreases volume else increases volume
         
         if sender.direction == .Left{ //Left Swipe
@@ -123,16 +118,13 @@ MPMediaPickerControllerDelegate, AVAudioPlayerDelegate, UIAlertViewDelegate {
                 var volumeView = MPVolumeView()
                 self.view.addSubview(volumeView)
             }
-
         }
         if sender.direction == .Right{ //Right Swipe
             println("Swiped Right")
         }
     }
     
-
     @IBAction func clickedPause(sender: UIButton) { //Pause is clicked
-        println("Clicked Pause")
         pause.hidden = true
         play.hidden = false
         NSNotificationCenter.defaultCenter().removeObserver(self)
@@ -146,78 +138,51 @@ MPMediaPickerControllerDelegate, AVAudioPlayerDelegate, UIAlertViewDelegate {
     func mediaPicker(mediaPicker: MPMediaPickerController!,
         didPickMediaItems mediaItemCollection: MPMediaItemCollection!){
             
-            println("Media Picker returned")
-            
-            /* Instantiate the music player */
-            
             myMusicPlayer = MPMusicPlayerController()
             
             if let player = myMusicPlayer{
                 player.beginGeneratingPlaybackNotifications()
-                
-                /* Start playing the items in the collection */
-                player.setQueueWithItemCollection(mediaItemCollection)
+                player.setQueueWithItemCollection(mediaItemCollection) //play items in chosen collection
                 player.play()
                 
-                /* Finally dismiss the media picker controller */
-                mediaPicker.dismissViewControllerAnimated(true, completion: nil)
+                mediaPicker.dismissViewControllerAnimated(true, completion: nil) //dismiss
                 
             }
-            
     }
     
-    func mediaPickerDidCancel(mediaPicker: MPMediaPickerController!) {
-        /* The media picker was cancelled */
-        println("Media Picker was cancelled")
+    func mediaPickerDidCancel(mediaPicker: MPMediaPickerController!) { //Canceling the media picker
         mediaPicker.dismissViewControllerAnimated(true, completion: nil)
     }
     
         
-    func displayMediaPickerAndPlayItem(){
+    func displayMedia(){ //This function displays the media
         
         mediaPicker = MPMediaPickerController(mediaTypes: .AnyAudio)
         
         if let picker = mediaPicker{
             
-            println("Successfully instantiated a media picker")
             picker.delegate = self
             picker.allowsPickingMultipleItems = true
             view.addSubview(picker.view)
             presentViewController(picker, animated: true, completion: nil)
             
         } else {
-            println("Could not instantiate a media picker")
+            println("Error - Could not build the media picker")
         }
-    }
-    
-    func createTeam(){
-        var inputTextField: UITextField?
-        let alertController = UIAlertController(title: "Larkin Silent Dance", message: "Give your dance party a name.", preferredStyle: .Alert)
-        let ok = UIAlertAction(title: "OK", style: .Default, handler: { (action) -> Void in
-            // Do whatever you want with inputTextField?.text
-            self.teamName = "\(inputTextField!.text)"
-            println(self.teamName)
-        })
-        alertController.addAction(ok)
-        alertController.addTextFieldWithConfigurationHandler { (textField) -> Void in
-            inputTextField = textField
-        }
-        presentViewController(alertController, animated: true, completion: nil)
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         authenticateUser()
-        /* Swipes that are performed from right to
-        left are to be detected */
+        //Swipes that are performed from right to
+        //left are to be detected
         swipeRecognizer1.direction = .Left
         swipeRecognizer2.direction = .Right
         
-        /* Just one finger needed */
         swipeRecognizer1.numberOfTouchesRequired = 1
         swipeRecognizer2.numberOfTouchesRequired = 1
         
-        /* Add it to the view */
+        // Add it to the view 
         view.addGestureRecognizer(swipeRecognizer1)
         view.addGestureRecognizer(swipeRecognizer2)
 

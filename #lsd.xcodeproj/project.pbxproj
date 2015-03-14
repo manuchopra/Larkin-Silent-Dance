@@ -10,7 +10,6 @@
 		321BA56D1AABAF6800E07842 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 321BA56B1AABAF6800E07842 /* Bolts.framework */; };
 		321BA56E1AABAF6800E07842 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 321BA56C1AABAF6800E07842 /* Parse.framework */; };
 		3220D1031AAE398F00199021 /* WallViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3220D1021AAE398F00199021 /* WallViewController.swift */; };
-		32A1BD2A1AB3BDBD000195B2 /* pic2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 32A1BD291AB3BDBD000195B2 /* pic2.jpg */; };
 		32C681DC1AA7CBB000C601B9 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32C681DB1AA7CBB000C601B9 /* AudioToolbox.framework */; };
 		32C681DE1AA7CBB900C601B9 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32C681DD1AA7CBB900C601B9 /* CFNetwork.framework */; };
 		32C681E01AA7CBC200C601B9 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32C681DF1AA7CBC200C601B9 /* CoreGraphics.framework */; };
@@ -34,13 +33,6 @@
 		32C7236E1AA40DE10060CF96 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 32C7236D1AA40DE10060CF96 /* Images.xcassets */; };
 		32C723711AA40DE10060CF96 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 32C7236F1AA40DE10060CF96 /* LaunchScreen.xib */; };
 		32C7237D1AA40DE10060CF96 /* _lsdTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32C7237C1AA40DE10060CF96 /* _lsdTests.swift */; };
-		32CC56881AAD6EA3002C0AB6 /* Icon-60.png in Resources */ = {isa = PBXBuildFile; fileRef = 32CC56811AAD6EA3002C0AB6 /* Icon-60.png */; };
-		32CC56891AAD6EA3002C0AB6 /* Icon-72.png in Resources */ = {isa = PBXBuildFile; fileRef = 32CC56821AAD6EA3002C0AB6 /* Icon-72.png */; };
-		32CC568A1AAD6EA3002C0AB6 /* Icon-72@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 32CC56831AAD6EA3002C0AB6 /* Icon-72@2x.png */; };
-		32CC568B1AAD6EA3002C0AB6 /* Icon-Small-50.png in Resources */ = {isa = PBXBuildFile; fileRef = 32CC56841AAD6EA3002C0AB6 /* Icon-Small-50.png */; };
-		32CC568C1AAD6EA3002C0AB6 /* Icon-Small-50@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 32CC56851AAD6EA3002C0AB6 /* Icon-Small-50@2x.png */; };
-		32CC568D1AAD6EA3002C0AB6 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 32CC56861AAD6EA3002C0AB6 /* Icon.png */; };
-		32CC568E1AAD6EA3002C0AB6 /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 32CC56871AAD6EA3002C0AB6 /* Icon@2x.png */; };
 		32DD7A571AAD86BF00547E9D /* Location Filled-32.png in Resources */ = {isa = PBXBuildFile; fileRef = 32DD7A561AAD86BF00547E9D /* Location Filled-32.png */; };
 /* End PBXBuildFile section */
 
@@ -58,7 +50,6 @@
 		321BA56B1AABAF6800E07842 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Bolts.framework; path = "../Code/parse-library-1.6.4/Bolts.framework"; sourceTree = "<group>"; };
 		321BA56C1AABAF6800E07842 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Parse.framework; path = "../Code/parse-library-1.6.4/Parse.framework"; sourceTree = "<group>"; };
 		3220D1021AAE398F00199021 /* WallViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WallViewController.swift; sourceTree = "<group>"; };
-		32A1BD291AB3BDBD000195B2 /* pic2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = pic2.jpg; sourceTree = "<group>"; };
 		32C681DB1AA7CBB000C601B9 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		32C681DD1AA7CBB900C601B9 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		32C681DF1AA7CBC200C601B9 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -87,13 +78,6 @@
 		32C723761AA40DE10060CF96 /* #lsdTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "#lsdTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		32C7237B1AA40DE10060CF96 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		32C7237C1AA40DE10060CF96 /* _lsdTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = _lsdTests.swift; sourceTree = "<group>"; };
-		32CC56811AAD6EA3002C0AB6 /* Icon-60.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-60.png"; sourceTree = "<group>"; };
-		32CC56821AAD6EA3002C0AB6 /* Icon-72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-72.png"; sourceTree = "<group>"; };
-		32CC56831AAD6EA3002C0AB6 /* Icon-72@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-72@2x.png"; sourceTree = "<group>"; };
-		32CC56841AAD6EA3002C0AB6 /* Icon-Small-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-Small-50.png"; sourceTree = "<group>"; };
-		32CC56851AAD6EA3002C0AB6 /* Icon-Small-50@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-Small-50@2x.png"; sourceTree = "<group>"; };
-		32CC56861AAD6EA3002C0AB6 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
-		32CC56871AAD6EA3002C0AB6 /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = "<group>"; };
 		32DD7A561AAD86BF00547E9D /* Location Filled-32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Location Filled-32.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -171,19 +155,11 @@
 				32C723681AA40DE10060CF96 /* SecondViewController.swift */,
 				32C7236A1AA40DE10060CF96 /* Main.storyboard */,
 				3220D1021AAE398F00199021 /* WallViewController.swift */,
-				32A1BD291AB3BDBD000195B2 /* pic2.jpg */,
 				32C682081AA8169800C601B9 /* music.mp3 */,
 				32C681F81AA7E44300C601B9 /* LoginViewController.swift */,
 				32C6820F1AA81E0900C601B9 /* gif3.gif */,
 				32C7236D1AA40DE10060CF96 /* Images.xcassets */,
-				32CC56811AAD6EA3002C0AB6 /* Icon-60.png */,
-				32CC56821AAD6EA3002C0AB6 /* Icon-72.png */,
 				32DD7A561AAD86BF00547E9D /* Location Filled-32.png */,
-				32CC56831AAD6EA3002C0AB6 /* Icon-72@2x.png */,
-				32CC56841AAD6EA3002C0AB6 /* Icon-Small-50.png */,
-				32CC56851AAD6EA3002C0AB6 /* Icon-Small-50@2x.png */,
-				32CC56861AAD6EA3002C0AB6 /* Icon.png */,
-				32CC56871AAD6EA3002C0AB6 /* Icon@2x.png */,
 				32C7236F1AA40DE10060CF96 /* LaunchScreen.xib */,
 				32C723621AA40DE10060CF96 /* Supporting Files */,
 				32C681F31AA7CD2100C601B9 /* #lsd-Bridging-Header.h */,
@@ -305,20 +281,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				32CC568D1AAD6EA3002C0AB6 /* Icon.png in Resources */,
 				32DD7A571AAD86BF00547E9D /* Location Filled-32.png in Resources */,
-				32CC568E1AAD6EA3002C0AB6 /* Icon@2x.png in Resources */,
 				32C682091AA8169800C601B9 /* music.mp3 in Resources */,
-				32CC568A1AAD6EA3002C0AB6 /* Icon-72@2x.png in Resources */,
 				32C7236C1AA40DE10060CF96 /* Main.storyboard in Resources */,
 				32C682121AA81E0900C601B9 /* gif3.gif in Resources */,
 				32C723711AA40DE10060CF96 /* LaunchScreen.xib in Resources */,
-				32CC56891AAD6EA3002C0AB6 /* Icon-72.png in Resources */,
-				32A1BD2A1AB3BDBD000195B2 /* pic2.jpg in Resources */,
-				32CC568B1AAD6EA3002C0AB6 /* Icon-Small-50.png in Resources */,
-				32CC56881AAD6EA3002C0AB6 /* Icon-60.png in Resources */,
 				32C7236E1AA40DE10060CF96 /* Images.xcassets in Resources */,
-				32CC568C1AAD6EA3002C0AB6 /* Icon-Small-50@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

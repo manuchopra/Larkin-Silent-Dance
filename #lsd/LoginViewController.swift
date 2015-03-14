@@ -20,15 +20,13 @@ class LoginViewController : UIViewController {
     @IBOutlet weak var button1: UIButton!
     @IBAction func button2clicked(sender: UIButton) {
         newLSD = true
-        println("true")
     }
     
     func isNew() -> Bool {
-        println("returning " + "\(newLSD)")
         return newLSD
     }
     
-    override func viewDidLoad() {
+    override func viewDidLoad() { //Plays Tequila in the background.
         let path = NSBundle.mainBundle().pathForResource("music", ofType:"mp3")
         let fileURL = NSURL(fileURLWithPath: path!)
         player = AVAudioPlayer(contentsOfURL: fileURL, error: nil)
