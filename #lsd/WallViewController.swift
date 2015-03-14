@@ -31,12 +31,12 @@ class WallViewController : UIViewController, UINavigationControllerDelegate, UII
             
             controller = UIImagePickerController()
             
-            if let theController = controller{
-                theController.sourceType = .Camera
-                theController.mediaTypes = [kUTTypeMovie as String]
-                theController.delegate = self
-                theController.videoMaximumDuration = 6 //It's the Vine generation - Only 6 sec videos allowed.
-                presentViewController(theController, animated: true, completion: nil)
+            if let video = controller{
+                video.sourceType = .Camera
+                video.mediaTypes = [kUTTypeMovie as String]
+                video.delegate = self
+                video.videoMaximumDuration = 6 //It's the Vine generation - Only 6 sec videos allowed.
+                presentViewController(video, animated: true, completion: nil)
             }
             
         } else {
@@ -76,12 +76,12 @@ class WallViewController : UIViewController, UINavigationControllerDelegate, UII
             
             controller = UIImagePickerController()
             
-            if let theController = controller{
-                theController.sourceType = .Camera
-                theController.mediaTypes = [kUTTypeImage as String]
-                theController.delegate = self
+            if let pic = controller{
+                pic.sourceType = .Camera
+                pic.mediaTypes = [kUTTypeImage as String]
+                pic.delegate = self
                 
-                presentViewController(theController, animated: true, completion: nil)
+                presentViewController(pic, animated: true, completion: nil)
             }
             
         } else {
@@ -112,7 +112,7 @@ class WallViewController : UIViewController, UINavigationControllerDelegate, UII
         var screenWidth = self.view.frame.width
         var screenHeight = view.frame.height
  
-        moviePlayer = MPMoviePlayerController(contentURL: url) //Plays the movie
+        moviePlayer = MPMoviePlayerController(contentURL: url)
         moviePlayer.view.frame = CGRectMake(0, 0, screenWidth, screenHeight/3)
         self.view.addSubview(moviePlayer.view)
         moviePlayer.fullscreen = true

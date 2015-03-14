@@ -29,7 +29,7 @@ class SecondViewController: UIViewController, CLLocationManagerDelegate, MKMapVi
         if let manager = locationManager{
             manager.delegate = self
             if startImmediately{
-                manager.startUpdatingLocation()
+                manager.startUpdatingLocation() 
             }
         }
     }
