@@ -14,8 +14,19 @@ import AVFoundation
 class LoginViewController : UIViewController {
 
     @IBOutlet weak var button2: UIButton!
-    @IBOutlet weak var button1: UIButton!
     var player : AVAudioPlayer! = nil
+    var newLSD : Bool = false
+        
+    @IBOutlet weak var button1: UIButton!
+    @IBAction func button2clicked(sender: UIButton) {
+        newLSD = true
+        println("true")
+    }
+    
+    func isNew() -> Bool {
+        println("returning " + "\(newLSD)")
+        return newLSD
+    }
     
     override func viewDidLoad() {
         let path = NSBundle.mainBundle().pathForResource("music", ofType:"mp3")
@@ -23,8 +34,6 @@ class LoginViewController : UIViewController {
         player = AVAudioPlayer(contentsOfURL: fileURL, error: nil)
         player.prepareToPlay()
         player.play()
-
-        println("reach")
         
         var filePath = NSBundle.mainBundle().pathForResource("gif3", ofType: "gif")
         var gif = NSData(contentsOfFile: filePath!)
@@ -40,7 +49,7 @@ class LoginViewController : UIViewController {
         filter.alpha = 0.05
         self.view.addSubview(filter)
 
-        view.bringSubviewToFront(button1)
+       view.bringSubviewToFront(button1)
         view.bringSubviewToFront(button2)
     }
 

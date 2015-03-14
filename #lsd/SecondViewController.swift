@@ -14,10 +14,8 @@ class SecondViewController: UIViewController, CLLocationManagerDelegate, MKMapVi
     func locationManager(manager: CLLocationManager!,
         didUpdateToLocation newLocation: CLLocation!,
         fromLocation oldLocation: CLLocation!){
-            
             println("Latitude = \(newLocation.coordinate.latitude)")
             println("Longitude = \(newLocation.coordinate.longitude)")
-            
     }
 
     func locationManager(manager: CLLocationManager!,

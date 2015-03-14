@@ -68,7 +68,7 @@
                 <swipeGestureRecognizer direction="right" id="fNX-IQ-Qza"/>
                 <swipeGestureRecognizer direction="right" id="ixX-Ey-WZH"/>
             </objects>
-            <point key="canvasLocation" x="1005" y="-417"/>
+            <point key="canvasLocation" x="1033" y="-1121"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="G87-wN-qKx">
@@ -84,7 +84,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fPb-QJ-C8w" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1569" y="-11"/>
+            <point key="canvasLocation" x="-1642" y="-1342"/>
         </scene>
         <!--Login-->
         <scene sceneID="Dhd-qr-bcm">
@@ -98,18 +98,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" alpha="0.69999999999999973" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="i9x-tr-nId">
-                                <rect key="frame" x="135" y="330" width="330" height="49"/>
-                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <fontDescription key="fontDescription" name="AvenirNext-Bold" family="Avenir Next" pointSize="27"/>
-                                <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <state key="normal" title="Create your own LSD">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <segue destination="49e-Tb-3d3" kind="push" id="Rbd-Gk-R5P"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" alpha="0.69999999999999973" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hqF-pd-xSc">
                                 <rect key="frame" x="135" y="250" width="330" height="49"/>
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -122,7 +110,20 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="G3P-s5-mLy" kind="push" id="kLJ-bE-PK8"/>
+                                    <segue destination="49e-Tb-3d3" kind="push" id="yhV-en-gWL"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" alpha="0.69999999999999973" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="i9x-tr-nId">
+                                <rect key="frame" x="135" y="330" width="330" height="49"/>
+                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" name="AvenirNext-Bold" family="Avenir Next" pointSize="27"/>
+                                <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal" title="Create your own LSD">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="button2clicked:" destination="YjK-mx-E48" eventType="touchUpInside" id="MBv-ZR-TBe"/>
+                                    <segue destination="49e-Tb-3d3" kind="push" id="Rbd-Gk-R5P"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -137,13 +138,84 @@
                     </view>
                     <navigationItem key="navigationItem" title="Login" id="HZt-kJ-Zvr"/>
                     <connections>
-                        <outlet property="button1" destination="hqF-pd-xSc" id="FFa-9H-FCt"/>
+                        <outlet property="button1" destination="hqF-pd-xSc" id="UCk-WD-el8"/>
                         <outlet property="button2" destination="i9x-tr-nId" id="xYe-pd-oTU"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XPh-qm-hyZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-739" y="-11"/>
+            <point key="canvasLocation" x="-686" y="-1342"/>
+        </scene>
+        <!--Wall-->
+        <scene sceneID="cXC-Iu-D6n">
+            <objects>
+                <viewController id="JrM-K8-srU" customClass="WallViewController" customModule="_lsd" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="rDU-ta-9XY"/>
+                        <viewControllerLayoutGuide type="bottom" id="o8c-v5-ER7"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="WPG-81-l3y" customClass="UIImageView">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0ql-Gi-kVJ">
+                                <rect key="frame" x="217" y="285" width="167" height="38"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="167" id="OPi-8b-Afa"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="AvenirNext-Bold" family="Avenir Next" pointSize="19"/>
+                                <state key="normal" title="Share this video">
+                                    <color key="titleColor" red="1" green="0.5701762226" blue="0.72880450750000003" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="shareAction:" destination="JrM-K8-srU" eventType="touchUpInside" id="dRU-MD-S4t"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dmj-29-zgi">
+                                <rect key="frame" x="221" y="335" width="160" height="38"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <fontDescription key="fontDescription" name="AvenirNext-Bold" family="Avenir Next" pointSize="19"/>
+                                <state key="normal" title="Take a new video">
+                                    <color key="titleColor" red="1" green="0.5701762226" blue="0.72880450750000003" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="videoAction:" destination="JrM-K8-srU" eventType="touchUpInside" id="S0t-VW-VH6"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LuN-Wt-5VH">
+                                <rect key="frame" x="218" y="390" width="166" height="38"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <fontDescription key="fontDescription" name="AvenirNext-Bold" family="Avenir Next" pointSize="19"/>
+                                <state key="normal" title="Click a new photo">
+                                    <color key="titleColor" red="1" green="0.5701762226" blue="0.72880450750000003" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="photoAction:" destination="JrM-K8-srU" eventType="touchUpInside" id="2Vy-9f-ak1"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="dmj-29-zgi" firstAttribute="centerX" secondItem="LuN-Wt-5VH" secondAttribute="centerX" id="0GA-Lu-gqp"/>
+                            <constraint firstItem="LuN-Wt-5VH" firstAttribute="top" secondItem="dmj-29-zgi" secondAttribute="bottom" constant="17" id="3IZ-dZ-tz0"/>
+                            <constraint firstItem="0ql-Gi-kVJ" firstAttribute="trailing" secondItem="LuN-Wt-5VH" secondAttribute="trailing" id="AEd-3h-LWn"/>
+                            <constraint firstItem="0ql-Gi-kVJ" firstAttribute="centerX" secondItem="WPG-81-l3y" secondAttribute="centerX" id="Moo-3I-mEA"/>
+                            <constraint firstItem="0ql-Gi-kVJ" firstAttribute="top" secondItem="rDU-ta-9XY" secondAttribute="bottom" constant="265" id="l7h-tT-ZA3"/>
+                            <constraint firstItem="dmj-29-zgi" firstAttribute="top" secondItem="0ql-Gi-kVJ" secondAttribute="bottom" constant="12" id="xSe-cE-EdG"/>
+                        </constraints>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Wall" image="SLR Camera-32" id="n96-Du-8e9"/>
+                    <connections>
+                        <outlet property="shareButton" destination="0ql-Gi-kVJ" id="vPr-12-7r7"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="k2h-sQ-SMx" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1033" y="557"/>
         </scene>
         <!--Map-->
         <scene sceneID="w2e-JT-rg3">
@@ -157,15 +229,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Current Speed:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mz2-mW-RlM">
-                                <rect key="frame" x="241" y="323" width="117" height="21"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="21" id="82i-EA-XnK"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="dAD-gt-8d9">
                                 <rect key="frame" x="202" y="442" width="197" height="29"/>
                                 <segments>
@@ -176,7 +239,7 @@
                                     <action selector="indexChanged:" destination="o7Y-kk-OXI" eventType="valueChanged" id="JPQ-7v-IIL"/>
                                 </connections>
                             </segmentedControl>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="gbI-Cd-Lxo">
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="gbI-Cd-Lxo">
                                 <rect key="frame" x="118" y="28" width="364" height="270"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="364" id="YlJ-Ze-aBo"/>
@@ -192,27 +255,23 @@
                         <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
                         <constraints>
                             <constraint firstItem="gbI-Cd-Lxo" firstAttribute="centerX" secondItem="UON-Xd-Yzx" secondAttribute="centerX" id="6uc-eW-70z"/>
-                            <constraint firstItem="Mz2-mW-RlM" firstAttribute="top" secondItem="gbI-Cd-Lxo" secondAttribute="bottom" constant="25" id="NMx-14-g1y"/>
                             <constraint firstItem="K5N-TR-2b7" firstAttribute="top" secondItem="dAD-gt-8d9" secondAttribute="bottom" constant="81" id="dz7-VL-PX7"/>
                             <constraint firstItem="dAD-gt-8d9" firstAttribute="trailing" secondItem="sSi-yT-YDx" secondAttribute="trailing" id="f8O-pt-XVz"/>
                             <constraint firstItem="dAD-gt-8d9" firstAttribute="top" secondItem="sSi-yT-YDx" secondAttribute="bottom" constant="34" id="f9F-Gc-VSy"/>
                             <constraint firstItem="dAD-gt-8d9" firstAttribute="centerX" secondItem="gbI-Cd-Lxo" secondAttribute="centerX" id="iOY-i9-bCl"/>
-                            <constraint firstItem="Mz2-mW-RlM" firstAttribute="leading" secondItem="UON-Xd-Yzx" secondAttribute="leading" constant="241" id="nPG-bG-4Kc"/>
-                            <constraint firstItem="sSi-yT-YDx" firstAttribute="top" secondItem="Mz2-mW-RlM" secondAttribute="bottom" constant="34" id="tUA-hR-StM"/>
                             <constraint firstItem="gbI-Cd-Lxo" firstAttribute="top" secondItem="xtS-Lv-ALg" secondAttribute="bottom" constant="8" symbolic="YES" id="usr-BS-mv4"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Map" image="Location Filled-32.png" id="33M-Ho-O9h"/>
                     <navigationItem key="navigationItem" id="fxn-Pg-eeX"/>
                     <connections>
-                        <outlet property="distanceLabel" destination="Mz2-mW-RlM" id="mpb-rc-zxa"/>
                         <outlet property="startStopTracking" destination="dAD-gt-8d9" id="2A7-3R-sIL"/>
                         <outlet property="theMap" destination="gbI-Cd-Lxo" id="CeT-kk-bVc"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AjD-G9-e9r" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1005" y="270"/>
+            <point key="canvasLocation" x="1033" y="-258"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="yl2-sM-qoP">
@@ -230,58 +289,12 @@
                     <connections>
                         <segue destination="9pv-A4-QxB" kind="relationship" relationship="viewControllers" id="u7Y-xg-7CH"/>
                         <segue destination="o7Y-kk-OXI" kind="relationship" relationship="viewControllers" id="VTO-L4-ne6"/>
-                        <segue destination="LXO-WA-AHY" kind="relationship" relationship="viewControllers" id="U20-5u-LEf"/>
+                        <segue destination="JrM-K8-srU" kind="relationship" relationship="viewControllers" id="tvH-8C-5eJ"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HuB-VB-40B" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="120" y="-168"/>
-        </scene>
-        <!--Wall-->
-        <scene sceneID="12c-mS-Hlj">
-            <objects>
-                <tableViewController id="LXO-WA-AHY" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="82" sectionHeaderHeight="22" sectionFooterHeight="22" id="eNN-s5-3sd">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="82" id="YYr-ap-kvw">
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="YYr-ap-kvw" id="fwp-jI-mQH">
-                                    <autoresizingMask key="autoresizingMask"/>
-                                </tableViewCellContentView>
-                            </tableViewCell>
-                        </prototypes>
-                        <connections>
-                            <outlet property="dataSource" destination="LXO-WA-AHY" id="2px-OL-vGM"/>
-                            <outlet property="delegate" destination="LXO-WA-AHY" id="gno-uL-FEs"/>
-                        </connections>
-                    </tableView>
-                    <tabBarItem key="tabBarItem" title="Wall" image="SLR Camera-32" id="QQn-C3-Ki1"/>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="viM-x3-Jux" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="120" y="596"/>
-        </scene>
-        <!--View Controller-->
-        <scene sceneID="TZf-zg-boJ">
-            <objects>
-                <viewController id="G3P-s5-mLy" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="k7W-Nb-xjI"/>
-                        <viewControllerLayoutGuide type="bottom" id="Z8r-9Q-saK"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="Xwm-QP-X28">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                    <navigationItem key="navigationItem" id="lKn-js-SUX"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="0kP-Zy-kSx" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-739" y="1078"/>
+            <point key="canvasLocation" x="-686" y="9"/>
         </scene>
     </scenes>
     <resources>
@@ -291,4 +304,7 @@
         <image name="pause" width="60" height="60"/>
         <image name="play" width="60" height="60"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="Rbd-Gk-R5P"/>
+    </inferredMetricsTieBreakers>
 </document>

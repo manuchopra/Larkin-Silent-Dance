@@ -16,8 +16,9 @@ MPMediaPickerControllerDelegate, AVAudioPlayerDelegate, UIAlertViewDelegate {
     
     var swipeRecognizer1: UISwipeGestureRecognizer!
     var swipeRecognizer2: UISwipeGestureRecognizer!
-    
-    required init(coder aDecoder: NSCoder) {
+    var className = ""
+
+    required init(coder aDecoder: NSCoder) { //Initializes the 2 swipe recognizers and their relevant action.
         super.init(coder: aDecoder)
         swipeRecognizer1 = UISwipeGestureRecognizer(target: self,
             action: "handleSwipes:")
@@ -26,46 +27,30 @@ MPMediaPickerControllerDelegate, AVAudioPlayerDelegate, UIAlertViewDelegate {
     }
 
     var moviePlayer:MPMoviePlayerController!
-
     var myMusicPlayer: MPMusicPlayerController?
     var buttonPickAndPlay: UIButton?
     var buttonStopPlaying: UIButton?
     var mediaPicker: MPMediaPickerController?
     var teamName = ""
     
-    
-    func authenticateUser() {
-        // Get the local authentication context.
+    func authenticateUser() { //This function is called to authenticate the user
         let context = LAContext()
-        
-        // Declare a NSError variable.
         var error: NSError?
         
-        // Set the reason string that will appear on the authentication alert.
-        var reasonString = "Authentication is needed to access your notes."
+        var reasonString = "Your fingerprint will be mapped to a unique password."
         
-        // Check if the device can evaluate the policy.
+        //USING TOUCH ID API
         if context.canEvaluatePolicy(LAPolicy.DeviceOwnerAuthenticationWithBiometrics, error: &error) {
             [context .evaluatePolicy(LAPolicy.DeviceOwnerAuthenticationWithBiometrics, localizedReason: reasonString, reply: { (success: Bool, evalPolicyError: NSError?) -> Void in
                 
                 if success {
-                    println("Success")
                 }
-                else{
-                    // If authentication failed then show a message to the console with a short description.
-                    // In case that the error is a user fallback, then show the password alert view.
+                else{ //failure case
                     println(evalPolicyError?.localizedDescription)
                     
                     switch evalPolicyError!.code {
                         
-                    case LAError.SystemCancel.rawValue:
-                        println("Authentication was cancelled by the system")
-                        
-                    case LAError.UserCancel.rawValue:
-                        println("Authentication was cancelled by the user")
-                        
-                    case LAError.UserFallback.rawValue:
-                        println("User selected to enter custom password")
+                    case LAError.UserFallback.rawValue://user decides to type the password again
                         self.showPasswordAlert()
                         
                     default:
@@ -76,65 +61,48 @@ MPMediaPickerControllerDelegate, AVAudioPlayerDelegate, UIAlertViewDelegate {
                 
             })]
         }
-        else{
-            // If the security policy cannot be evaluated then show a short message depending on the error.
-            switch error!.code{
-                
-            case LAError.TouchIDNotEnrolled.rawValue:
-                println("TouchID is not enrolled")
-                
-            case LAError.PasscodeNotSet.rawValue:
-                println("A passcode has not been set")
-                
-            default:
-                // The LAError.TouchIDNotAvailable case.
-                println("TouchID not available")
-            }
+        else{ //This option is to be used for non- Touch ID hardware or simulators
             
-            // Optionally the error description can be displayed on the console.
-            println(error?.localizedDescription)
-            
-            // Show the custom alert view to allow users to enter the password.
             self.showPasswordAlert()
         }
     }
     
-    func showPasswordAlert() {
-        var passwordAlert : UIAlertView = UIAlertView(title: "Larkin Silent Dance", message: "Please type your password", delegate: self, cancelButtonTitle: "Cancel", otherButtonTitles: "Okay")
-        passwordAlert.alertViewStyle = UIAlertViewStyle.SecureTextInput
-        passwordAlert.show()
-    }
-
-    func alertView(alertView: UIAlertView!, clickedButtonAtIndex buttonIndex: Int) {
-        if buttonIndex == 1 {
-            if !alertView.textFieldAtIndex(0)!.text.isEmpty {
-                if alertView.textFieldAtIndex(0)!.text == "appcoda" {
-                    
-                }
-                else{
-                    showPasswordAlert()
-                }
-            }
-            else{
-                showPasswordAlert()
-            }
+    func showPasswordAlert() { //This is the fallback option if TouchId doesn't work.
+        let login = LoginViewController()
+        if login.isNew() { //if user is a dancer
+            var passwordAlert : UIAlertView = UIAlertView(title: "Larkin Silent Dance", message: "Create a team name", delegate: self, cancelButtonTitle: "Cancel", otherButtonTitles: "Okay")
+            passwordAlert.alertViewStyle = UIAlertViewStyle.SecureTextInput
+            passwordAlert.show()
+        } else { //if user is an RA
+            var passwordAlert : UIAlertView = UIAlertView(title: "Larkin Silent Dance", message: "Enter your team name. If you don't have one - Ask your RA. If you are an RA or a CS 193P TA, create a new team name.", delegate: self, cancelButtonTitle: "Cancel", otherButtonTitles: "Okay")
+            passwordAlert.alertViewStyle = UIAlertViewStyle.SecureTextInput
+            passwordAlert.show()
         }
     }
 
-    
-    @IBOutlet weak var pause: UIButton!
-
-    @IBOutlet weak var play: UIButton!
-    
-    @IBAction func choose(sender: UIButton) {
-        displayMediaPickerAndPlayItem()
-        view.addSubview(sender)
-        play.hidden = true
-        pause.hidden = false
+    func alertView(alertView: UIAlertView!, clickedButtonAtIndex buttonIndex: Int) {// This function describes the alert view and pushes the name of the class to Parse.
+        if buttonIndex == 1 {
+            if !alertView.textFieldAtIndex(0)!.text.isEmpty { //check if entered class is not empty
+                className = alertView.textFieldAtIndex(0)!.text
+            var object = PFObject(className: alertView.textFieldAtIndex(0)!.text)
+            object.saveInBackground()
+            }
+        }
     }
     
-    @IBAction func clickedPlay(sender: UIButton) {
-        println("Clicked Play")
+    @IBOutlet weak var pause: UIButton! //PauseUI button
+
+    @IBOutlet weak var play: UIButton! //Play UI button
+    
+    @IBAction func choose(sender: UIButton) { //Choose your song list.
+        displayMediaPickerAndPlayItem()
+        view.addSubview(sender)
+        play.hidden = true //hides the play button
+        pause.hidden = false //shows the pause button
+        createTeam()
+    }
+    
+    @IBAction func clickedPlay(sender: UIButton) { //Called when user hits the play button
         view.addSubview(sender)
         NSNotificationCenter.defaultCenter().removeObserver(self)
         
@@ -144,102 +112,36 @@ MPMediaPickerControllerDelegate, AVAudioPlayerDelegate, UIAlertViewDelegate {
 
         play.hidden = true
         pause.hidden = false
-        // add video from instagram
-        
-        var screenWidth = self.view.frame.width
-        var screenHeight = view.frame.height
-}
+    }
     
     
-    func handleSwipes(sender: UISwipeGestureRecognizer){
+    func handleSwipes(sender: UISwipeGestureRecognizer){ // Called when user swipes. If you swipe left, decreases volume else increases volume
         
-        if sender.direction  == .Down{
-            println("Swiped Down")
-        }
-        if sender.direction == .Left{
+        if sender.direction == .Left{ //Left Swipe
             println("Swiped Left")
             if let player = myMusicPlayer{
-//                var volumeView = MPVolumeView(frame : CGRect(origin:CGPoint(x: 0.0, y: 0.0), size: view.frame.size))
-//                self.view.addSubview(volumeView)
+                var volumeView = MPVolumeView()
+                self.view.addSubview(volumeView)
             }
 
         }
-        if sender.direction == .Right{
+        if sender.direction == .Right{ //Right Swipe
             println("Swiped Right")
         }
-        if sender.direction == .Up{
-            println("Swiped Up")
-        }
-        
     }
     
 
-    @IBAction func clickedPause(sender: UIButton) {
+    @IBAction func clickedPause(sender: UIButton) { //Pause is clicked
         println("Clicked Pause")
         pause.hidden = true
         play.hidden = false
-        stopPlayingAudio()
+        NSNotificationCenter.defaultCenter().removeObserver(self)
+        if let player = myMusicPlayer{
+            player.pause()
+        }
         view.addSubview(sender)
     }
     
-    func musicPlayerStateChanged(notification: NSNotification){
-        
-        /* Let's get the state of the player */
-        let stateAsObject =
-        notification.userInfo!["MPMusicPlayerControllerPlaybackStateKey"]
-            as? NSNumber
-        
-        if let state = stateAsObject{
-            
-            /* Make your decision based on the state of the player */
-            switch MPMusicPlaybackState(rawValue: state.integerValue)!{
-            case .Stopped:
-                /* Here the media player has stopped playing the queue. */
-                println("Stopped")
-            case .Playing:
-                /* The media player is playing the queue. Perhaps you
-                can reduce some processing that your application
-                that is using to give more processing power
-                to the media player */
-                println("Played")
-            case .Paused:
-                /* The media playback is paused here. You might want
-                to indicate by showing graphics to the user */
-                println("Paused")
-            case .Interrupted:
-                /* An interruption stopped the playback of the media queue */
-                println("Interrupted")
-            case .SeekingForward:
-                /* The user is seeking forward in the queue */
-                println("Seeking Forward")
-            case .SeekingBackward:
-                /* The user is seeking backward in the queue */
-                println("Seeking Backward")
-            }
-            
-        }
-    }
-    
-    func nowPlayingItemIsChanged(notification: NSNotification){
-        
-        println("Playing Item Is Changed")
-        
-        let key = "MPMusicPlayerControllerNowPlayingItemPersistentIDKey"
-        
-        let persistentID =
-        notification.userInfo![key] as? NSString
-        
-        if let id = persistentID{
-            /* Do something with Persistent ID */
-            println("Persistent ID = \(id)")
-        }
-        
-    }
-    
-    func volumeIsChanged(notification: NSNotification){
-        println("Volume Is Changed")
-        /* The userInfo dictionary of this notification is normally empty */
-    }
     
     func mediaPicker(mediaPicker: MPMediaPickerController!,
         didPickMediaItems mediaItemCollection: MPMediaItemCollection!){
@@ -252,27 +154,6 @@ MPMediaPickerControllerDelegate, AVAudioPlayerDelegate, UIAlertViewDelegate {
             
             if let player = myMusicPlayer{
                 player.beginGeneratingPlaybackNotifications()
-                
-                /* Get notified when the state of the playback changes */
-                NSNotificationCenter.defaultCenter().addObserver(self,
-                    selector: "musicPlayerStateChanged:",
-                    name: MPMusicPlayerControllerPlaybackStateDidChangeNotification,
-                    object: nil)
-                
-                /* Get notified when the playback moves from one item
-                to the other. In this recipe, we are only going to allow
-                our user to pick one music file */
-                NSNotificationCenter.defaultCenter().addObserver(self,
-                    selector: "nowPlayingItemIsChanged:",
-                    name: MPMusicPlayerControllerNowPlayingItemDidChangeNotification,
-                    object: nil)
-                
-                /* And also get notified when the volume of the
-                music player is changed */
-                NSNotificationCenter.defaultCenter().addObserver(self,
-                    selector: "volumeIsChanged:",
-                    name: MPMusicPlayerControllerVolumeDidChangeNotification,
-                    object: nil)
                 
                 /* Start playing the items in the collection */
                 player.setQueueWithItemCollection(mediaItemCollection)
@@ -291,17 +172,7 @@ MPMediaPickerControllerDelegate, AVAudioPlayerDelegate, UIAlertViewDelegate {
         mediaPicker.dismissViewControllerAnimated(true, completion: nil)
     }
     
-    
-    func stopPlayingAudio(){
         
-        NSNotificationCenter.defaultCenter().removeObserver(self)
-        
-        if let player = myMusicPlayer{
-            player.pause()
-        }
-        
-    }
-    
     func displayMediaPickerAndPlayItem(){
         
         mediaPicker = MPMediaPickerController(mediaTypes: .AnyAudio)
@@ -336,7 +207,7 @@ MPMediaPickerControllerDelegate, AVAudioPlayerDelegate, UIAlertViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-      //  createTeam()
+        authenticateUser()
         /* Swipes that are performed from right to
         left are to be detected */
         swipeRecognizer1.direction = .Left
